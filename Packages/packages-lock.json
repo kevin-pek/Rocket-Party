@@ -72,7 +72,7 @@
       "dependencies": {}
     },
     "com.unity.collab-proxy": {
-      "version": "1.6.0",
+      "version": "1.8.0",
       "depth": 0,
       "source": "registry",
       "dependencies": {},
@@ -95,7 +95,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.visualstudio": {
-      "version": "2.0.9",
+      "version": "2.0.11",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -115,6 +115,15 @@
       "depth": 1,
       "source": "registry",
       "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.recorder": {
+      "version": "2.5.5",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.timeline": "1.0.0"
+      },
       "url": "https://packages.unity.com"
     },
     "com.unity.test-framework": {
