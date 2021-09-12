@@ -1,9 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-// @todo use Input Actions
 public class CharacterMovement : MonoBehaviour
 {
     [SerializeField] private float characterSpeed = 1.0f;
@@ -23,28 +21,6 @@ public class CharacterMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 velocity = new Vector2();
-        var keyboard = Keyboard.current;
-        if (keyboard != null)
-        {
-            if (keyboard.wKey.isPressed)
-            {
-                velocity.y += characterSpeed;
-            }
-            if (keyboard.aKey.isPressed)
-            {
-                velocity.x -= characterSpeed;
-            }
-            if (keyboard.sKey.isPressed)
-            {
-                velocity.y -= characterSpeed;
-            }
-            if (keyboard.dKey.isPressed)
-            {
-                velocity.x += characterSpeed;
-            }
-        }
-        print(velocity);
-        _rigidbody2D.velocity = velocity;
+        _rigidbody2D.velocity = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) * characterSpeed;
     }
 }
