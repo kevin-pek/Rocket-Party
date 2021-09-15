@@ -15,7 +15,7 @@ public class Rocket : MonoBehaviour
     {
         Vector2 collisionNormal = collision.contacts[0].normal;
         float collisionAngle = Vector2.SignedAngle(-transform.up, collisionNormal);
-        print(collisionAngle);
+        //print(collisionAngle);
         transform.up = -transform.up;
         transform.Rotate(Vector3.forward, collisionAngle * 2);
     }
