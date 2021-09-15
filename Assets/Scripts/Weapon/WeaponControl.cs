@@ -7,6 +7,7 @@ public class WeaponControl : MonoBehaviour
     public Texture2D cursor;
     protected float cooldown = 1.0f;
     protected float cooldownTimer;
+    public GameObject rocket;
     //include rocket class
     
     // Start is called before the first frame update
@@ -37,14 +38,17 @@ public class WeaponControl : MonoBehaviour
         if (cooldownTimer <= 0) {
             cooldownTimer = cooldown;
             // spawn rocket
-            Debug.DrawRay(transform.position, GetFireAngle() * Vector3.forward, Color.red);
+            Instantiate(rocket, transform.position, GetFireAngle());
+            //Debug.DrawRay(transform.position, GetFireAngle() * Vector3.forward, Color.red);
         }
     }
 
     Quaternion GetFireAngle() {
         Vector3 mousePos = Input.mousePosition;
-        Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePos);
-        worldPosition.z = 0;
-        return Quaternion.LookRotation(worldPosition - transform.position);
+        Vector3 playerPos = Camera.main.WorldToScreenPoint(transform.position);
+        Vector3 diff = mousePos - playerPos;
+        float angle = Mathf.Atan2(diff.y, diff.x);
+        return Quaternion.Euler(0f, 0f, Mathf.Rad2Deg * angle - 90);
+        //return Quaternion.LookRotation(diff, Vector3.up);
     }
 }
