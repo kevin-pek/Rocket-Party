@@ -21,6 +21,7 @@ public class CharacterMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _rigidbody2D.velocity = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) * characterSpeed;
+	var input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        _rigidbody2D.velocity = input.normalized() * characterSpeed;
     }
 }
