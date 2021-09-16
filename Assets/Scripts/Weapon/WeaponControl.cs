@@ -13,9 +13,9 @@ public class WeaponControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Confined;
+        //Cursor.lockState = CursorLockMode.Confined;
         //Cursor.visible = true;
-        Cursor.SetCursor(cursor, Vector2.zero, CursorMode.Auto);
+        //Cursor.SetCursor(cursor, Vector2.zero, CursorMode.Auto);
     }
 
     // Update is called once per frame
