@@ -85,11 +85,8 @@ public class AIControl : CharacterControl
             return;
         }
 
-        Debug.Log("Return?");
-
         Vector2 direction = path.vectorPath[currentPathPointIndex] - transform.position;
-        var force = direction.normalized * characterSpeed * Time.deltaTime;
-        rigidBody.AddForce(force);
+        rigidBody.velocity = direction.normalized * characterSpeed;
         if (direction.sqrMagnitude < nextPathPointDistance * nextPathPointDistance)
         {
             currentPathPointIndex++;
