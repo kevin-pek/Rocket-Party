@@ -21,14 +21,15 @@ public abstract class CharacterControl : MonoBehaviour
         }
     }
 
-    public bool FireWeapon(Vector2 targetPosition)
+    public bool FireWeapon(Vector3 targetPosition)
     {
         if (rocketCooldownTimer > 0.0f)
         {
             return false;
         }
         rocketCooldownTimer = rocketCooldownDuration;
-        var rotation = Quaternion.Euler(0.0f, 0.0f, Vector2.SignedAngle(Vector2.up, targetPosition));
+        var angle = Vector2.SignedAngle(Vector2.up, targetPosition - transform.position);
+        var rotation = Quaternion.Euler(0.0f, 0.0f, angle);
         Instantiate(rocketClass, transform.position, rotation);
         return true;
     }

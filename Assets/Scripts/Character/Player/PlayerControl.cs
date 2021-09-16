@@ -33,7 +33,7 @@ public class PlayerControl : CharacterControl
         // Fire Weapon
         if (Input.GetButton("Fire1"))
         {
-            FireWeaponTowardsMousePosition();
+            FireWeaponAtMouseWorldPosition();
         }
 
         // Debug Trace
@@ -45,10 +45,8 @@ public class PlayerControl : CharacterControl
         }
     }
 
-    void FireWeaponTowardsMousePosition()
+    void FireWeaponAtMouseWorldPosition()
     {
-        var playerScreenPosition = Camera.main.WorldToScreenPoint(transform.position);
-        var relativeScreenPosition = Input.mousePosition - playerScreenPosition;
-        FireWeapon(relativeScreenPosition);
+        FireWeapon(Camera.main.ScreenToWorldPoint(Input.mousePosition));
     }
 }

@@ -46,7 +46,7 @@ public class AIControl : CharacterControl
 
     public bool FireWeaponAtTarget()
     {
-        return FireWeapon(player.position - transform.position);
+        return FireWeapon(player.position);
     }
 
     public Vector2 GetTargetPos()
