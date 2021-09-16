@@ -132,4 +132,9 @@ public class AIControl : CharacterControl
             this.path = path;
         }
     }
+
+    public override float TGetFireAngle()
+    {
+        return 0.0f;
+    }
 }
