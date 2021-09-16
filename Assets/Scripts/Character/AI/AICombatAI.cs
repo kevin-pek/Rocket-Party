@@ -25,7 +25,7 @@ public class AICombatAI : MonoBehaviour
         IState waitState = new WaitState(control, 0.5f, 1.2f);
 
         // idle
-        stateMachine.AddTransition(idleState, followState, () => TargetDistance() < startFollowDistance);
+        stateMachine.AddTransition(idleState, followState, () => control.GetTargetDistance() < startFollowDistance);
 
         // follow
         stateMachine.AddTransition(followState, fireRocketState, CurrentStatedEnded);
@@ -42,11 +42,6 @@ public class AICombatAI : MonoBehaviour
     private void Update()
     {
         stateMachine.Tick();
-    }
-
-    private float TargetDistance()
-    {
-        return Vector2.Distance(control.GetTargetPos(), control.GetPosition());
     }
 
     private bool CurrentStatedEnded()

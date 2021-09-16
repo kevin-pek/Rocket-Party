@@ -47,18 +47,9 @@ public class FireRocketState : IState
             return;
         }
 
-        if (control.FireRocket(GetFireAngle()))
+        if (control.FireWeaponAtTarget())
         {
             fireCount--;
         }
-    }
-    
-    Vector3 GetFireAngle()
-    {
-        Vector3 targetPos = control.GetTargetPos();
-        Vector3 myPos = control.GetPosition();
-        Vector3 diff = targetPos - myPos;
-        float angle = Mathf.Atan2(diff.y, diff.x);
-        return new Vector3(0f, 0f, Mathf.Rad2Deg * angle - 90);
     }
 }

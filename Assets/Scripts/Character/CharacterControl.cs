@@ -7,20 +7,29 @@ public abstract class CharacterControl : MonoBehaviour
     [SerializeField] protected float characterSpeed;
     [SerializeField] protected float rocketCooldownDuration;
     [SerializeField] protected GameObject rocketClass;
+    [SerializeField] protected Transform spawnPos;
+    [SerializeField] protected Rigidbody2D rigidBody;
     protected float rocketCooldownTimer = 0.0f;
 
-    public abstract float TGetFireAngle();
+    public abstract void TakeDamage();
 
-    public abstract void TakeDamage();  
+    protected void TickCooldownTimer()
+    {
+        if (rocketCooldownTimer > 0.0f)
+        {
+            rocketCooldownTimer = Mathf.Max(0.0f, rocketCooldownTimer - Time.deltaTime);
+        }
+    }
 
-    public bool FireWeapon()
+    public bool FireWeapon(Vector2 targetPosition)
     {
         if (rocketCooldownTimer > 0.0f)
         {
             return false;
         }
         rocketCooldownTimer = rocketCooldownDuration;
-        Instantiate(rocketClass, transform.position, Quaternion.AngleAxis(TGetFireAngle(), Vector3.up));
+        var rotation = Quaternion.Euler(0.0f, 0.0f, Vector2.SignedAngle(Vector2.up, targetPosition));
+        Instantiate(rocketClass, transform.position, rotation);
         return true;
     }
 }

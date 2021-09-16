@@ -308,7 +308,6 @@ GameObject:
   - component: {fileID: 297474724}
   - component: {fileID: 297474727}
   - component: {fileID: 297474726}
-  - component: {fileID: 297474728}
   m_Layer: 8
   m_Name: Player
   m_TagString: Character
@@ -418,20 +417,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &297474728
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 297474722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed92086c220564017aa335d7ea5beab9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cursor: {fileID: 2800000, guid: 55c902477f47d41cb869aa2a0fa142b3, type: 3}
-  rocket: {fileID: 2593542839869711270, guid: 91537d164e3154777b02c337670d6dbc, type: 3}
 --- !u!114 &297474729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -445,8 +430,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterSpeed: 10
+  rocketCooldownDuration: 0.5
+  rocketClass: {fileID: 2593542839869711270, guid: 91537d164e3154777b02c337670d6dbc,
+    type: 3}
   spawnPos: {fileID: 1541630488}
+  rigidBody: {fileID: 297474727}
   hitText: {fileID: 487541364}
+  cursor: {fileID: 0}
 --- !u!1 &335101026
 GameObject:
   m_ObjectHideFlags: 0
@@ -1880,12 +1870,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59b18476036937544a2e86d64e9ce910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 600
+  characterSpeed: 5
+  rocketCooldownDuration: 0.5
+  rocketClass: {fileID: 2593542839869711270, guid: 91537d164e3154777b02c337670d6dbc,
+    type: 3}
+  spawnPos: {fileID: 1925988526}
+  rigidBody: {fileID: 2015210931}
+  player: {fileID: 297474725}
   nextPathPointDistance: 0.2
   pathUpdateRate: 0.5
-  spawnPos: {fileID: 1925988526}
-  rocket: {fileID: 2593542839869711270, guid: 91537d164e3154777b02c337670d6dbc, type: 3}
-  player: {fileID: 297474725}
 --- !u!114 &2015210933
 MonoBehaviour:
   m_ObjectHideFlags: 0
