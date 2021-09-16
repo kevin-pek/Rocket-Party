@@ -306,7 +306,6 @@ GameObject:
   - component: {fileID: 297474725}
   - component: {fileID: 297474729}
   - component: {fileID: 297474724}
-  - component: {fileID: 297474723}
   - component: {fileID: 297474727}
   - component: {fileID: 297474726}
   - component: {fileID: 297474728}
@@ -317,19 +316,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &297474723
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 297474722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40e4cc0dbb302534e9e7cd98c36b8a63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterSpeed: 10
 --- !u!212 &297474724
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -458,6 +444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 859c20faf6c603445a79accc622eb4fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterSpeed: 10
   spawnPos: {fileID: 1541630488}
   hitText: {fileID: 487541364}
 --- !u!1 &335101026
