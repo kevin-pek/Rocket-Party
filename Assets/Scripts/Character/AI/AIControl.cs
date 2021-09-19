@@ -5,27 +5,23 @@ using Pathfinding;
 
 public class AIControl : CharacterControl
 {
-    public float speed;
+    [SerializeField] private Transform player;
+
     public float nextPathPointDistance;
     public float pathUpdateRate = 0.5f;
 
-    public Transform spawnPos;
-
-    public GameObject rocket;
-
-    public Transform player;
-
-    private new Rigidbody2D rigidbody;
     private Seeker seeker;
-
+    private int currentPathPointIndex = 0;
     private bool isMoving = false;
+    private bool reachedTarget = false;
     private Vector2 target;
     private Path path;
-    private int currentPathPointIndex = 0;
-    private bool reachedTarget = false;
 
-    private float rocketCoolDownTime = 0.5f;
-    private float rocketCoolDownTimer;
+    public override void TakeDamage()
+    {
+        // todo
+        transform.position = spawnPos.position;
+    }
 
     /// <summary>
     /// Goes to the given position
@@ -33,7 +29,7 @@ public class AIControl : CharacterControl
     /// <returns>Reached target or not</returns>
     public bool GoTo(Vector2 target, float stopDistance)
     {
-        if ((rigidbody.position - target).sqrMagnitude < stopDistance * stopDistance)
+        if ((rigidBody.position - target).sqrMagnitude < stopDistance * stopDistance)
         {
             return true;
         }
@@ -48,48 +44,30 @@ public class AIControl : CharacterControl
         isMoving = false;
     }
 
-    public bool FireRocket(Vector3 angle)
+    public bool FireWeaponAtTarget()
     {
-        if (rocketCoolDownTimer > 0) 
-        { 
-            return false; 
-        }
-
-        Instantiate(rocket, transform.position, Quaternion.Euler(angle));
-        rocketCoolDownTimer = rocketCoolDownTime;
-        return true;
-    }
-
-    public override void TakeDamage()
-    {
-        // todo
-        transform.position = spawnPos.position;
+        return FireWeapon(player.position);
     }
 
     public Vector2 GetTargetPos()
     {
         return player.position;
-    }
+    } 
 
-    public Vector2 GetPosition()
+    public float GetTargetDistance()
     {
-        return rigidbody.position;
+        return Vector2.Distance(player.position, transform.position);
     }
 
     private void Start()
     {
-        rigidbody = GetComponent<Rigidbody2D>();
         seeker = GetComponent<Seeker>();
-
         InvokeRepeating("UpdatePath", 0f, pathUpdateRate);
     }
 
     private void Update()
     {
-        if (rocketCoolDownTimer > 0)
-        {
-            rocketCoolDownTimer -= Time.deltaTime;
-        }
+        TickCooldownTimer();
 
         if (!isMoving)
         {
@@ -107,8 +85,8 @@ public class AIControl : CharacterControl
             return;
         }
 
-        Vector2 direction = (Vector2)path.vectorPath[currentPathPointIndex] - rigidbody.position;
-        rigidbody.AddForce(direction.normalized * speed * Time.deltaTime);
+        Vector2 direction = path.vectorPath[currentPathPointIndex] - transform.position;
+        rigidBody.velocity = direction.normalized * characterSpeed;
         if (direction.sqrMagnitude < nextPathPointDistance * nextPathPointDistance)
         {
             currentPathPointIndex++;
@@ -121,8 +99,8 @@ public class AIControl : CharacterControl
         {
             return;
         }
-
-        seeker.StartPath(rigidbody.position, target, OnPathComplete);
+        
+        seeker.StartPath(rigidBody.position, target, OnPathComplete);
     }
 
     private void OnPathComplete(Path path)
