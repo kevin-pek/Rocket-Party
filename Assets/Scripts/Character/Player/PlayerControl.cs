@@ -15,14 +15,14 @@ public class PlayerControl : CharacterControl
         StartCoroutine(HideHitTextAfter(1));
     }
 
-    IEnumerator HideHitTextAfter(float time)
+    private IEnumerator HideHitTextAfter(float time)
     {
         yield return new WaitForSeconds(time);
         hitText.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         TickCooldownTimer();
 
@@ -45,7 +45,7 @@ public class PlayerControl : CharacterControl
         }
     }
 
-    void FireWeaponAtMouseWorldPosition()
+    private void FireWeaponAtMouseWorldPosition()
     {
         FireWeapon(Camera.main.ScreenToWorldPoint(Input.mousePosition));
     }
