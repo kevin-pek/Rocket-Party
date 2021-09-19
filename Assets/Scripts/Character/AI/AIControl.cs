@@ -59,13 +59,13 @@ public class AIControl : CharacterControl
         return Vector2.Distance(player.position, transform.position);
     }
 
-    void Start()
+    private void Start()
     {
         seeker = GetComponent<Seeker>();
         InvokeRepeating("UpdatePath", 0f, pathUpdateRate);
     }
 
-    void Update()
+    private void Update()
     {
         TickCooldownTimer();
 
