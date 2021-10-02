@@ -30,7 +30,9 @@ public abstract class CharacterControl : MonoBehaviour
         rocketCooldownTimer = rocketCooldownDuration;
         var angle = Vector2.SignedAngle(Vector2.up, targetPosition - transform.position);
         var rotation = Quaternion.Euler(0.0f, 0.0f, angle);
-        Instantiate(rocketClass, transform.position, rotation);
+        var rocket = Instantiate(rocketClass, transform.position, rotation);
+        rocket.GetComponent<Rocket>().parentPlayer = gameObject;
+        Physics2D.IgnoreCollision(GetComponent<Collider2D>(), rocket.GetComponent<Collider2D>(), true);
         return true;
     }
 }
