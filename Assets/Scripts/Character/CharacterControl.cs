@@ -10,8 +10,14 @@ public abstract class CharacterControl : MonoBehaviour
     [SerializeField] protected Transform spawnPos;
     [SerializeField] protected Rigidbody2D rigidBody;
     protected float rocketCooldownTimer = 0.0f;
+    
+    public Collider2D objectCollider;
 
     public abstract void TakeDamage();
+    
+    private void Start() {
+        objectCollider = GetComponent<Collider2D>();
+    }
 
     protected void TickCooldownTimer()
     {
@@ -31,8 +37,8 @@ public abstract class CharacterControl : MonoBehaviour
         var angle = Vector2.SignedAngle(Vector2.up, targetPosition - transform.position);
         var rotation = Quaternion.Euler(0.0f, 0.0f, angle);
         var rocket = Instantiate(rocketClass, transform.position, rotation);
-        rocket.GetComponent<Rocket>().parentPlayer = gameObject;
-        Physics2D.IgnoreCollision(GetComponent<Collider2D>(), rocket.GetComponent<Collider2D>(), true);
+        rocket.GetComponent<Rocket>().parentPlayer = this;
+        Physics2D.IgnoreCollision(objectCollider, rocket.GetComponent<Rocket>().objectCollider, true);
         return true;
     }
 }
