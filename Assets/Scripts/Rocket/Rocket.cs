@@ -10,11 +10,11 @@ public class Rocket : MonoBehaviour
     public GameObject parentPlayer;
 
     private int currentBounce = 0;
-    private new Collider2D collider;
+    public Collider2D objectCollider;
 
     private void Awake()
     {
-        collider = GetComponent<Collider2D>();
+        objectCollider = GetComponent<Collider2D>();
     }
 
     private void OnEnable()
@@ -51,6 +51,6 @@ public class Rocket : MonoBehaviour
     private IEnumerator EnableColliderAfter(float time)
     {
         yield return new WaitForSeconds(time);
-        Physics2D.IgnoreCollision(parentPlayer.GetComponent<Collider2D>(), collider, false);
+        Physics2D.IgnoreCollision(parentPlayer.objectCollider, objectCollider, false);
     }
 }
