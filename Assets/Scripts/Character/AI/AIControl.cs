@@ -61,6 +61,7 @@ public class AIControl : CharacterControl
 
     private void Start()
     {
+        base.Start();
         seeker = GetComponent<Seeker>();
         InvokeRepeating("UpdatePath", 0f, pathUpdateRate);
     }
