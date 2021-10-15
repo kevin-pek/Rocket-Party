@@ -24,12 +24,19 @@ public class PlayerControl : CharacterControl
     // Update is called once per frame
     private void Update()
     {
+        base.Update();
+
         TickCooldownTimer();
 
         // Movement
 	    var inputMovement = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         rigidBody.velocity = inputMovement.normalized * characterSpeed;       
         
+        // Rotate Sprite
+        var pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        var angle = Vector2.SignedAngle(Vector2.up, pos - transform.position);
+        transform.eulerAngles = new Vector3(0.0f, 0.0f, angle);
+
         // Fire Weapon
         if (Input.GetButton("Fire1"))
         {
