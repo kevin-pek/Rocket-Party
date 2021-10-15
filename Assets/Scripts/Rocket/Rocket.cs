@@ -7,18 +7,18 @@ public class Rocket : MonoBehaviour
     public float speed;
     public int maxBounce = 5;
     public string hitTag;
+    public GameObject parentPlayer;
 
     private int currentBounce = 0;
-    private new Collider2D collider;
+    public Collider2D objectCollider;
 
     private void Awake()
     {
-        collider = GetComponent<Collider2D>();
+        objectCollider = GetComponent<Collider2D>();
     }
 
     private void OnEnable()
     {
-        collider.enabled = false;
         currentBounce = 0;
         StartCoroutine(EnableColliderAfter(0.2f));
     }
@@ -51,6 +51,6 @@ public class Rocket : MonoBehaviour
     private IEnumerator EnableColliderAfter(float time)
     {
         yield return new WaitForSeconds(time);
-        collider.enabled = true;
+        Physics2D.IgnoreCollision(parentPlayer.objectCollider, objectCollider, false);
     }
 }

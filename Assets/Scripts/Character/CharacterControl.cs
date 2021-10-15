@@ -11,11 +11,17 @@ public abstract class CharacterControl : MonoBehaviour
     [SerializeField] protected Rigidbody2D rigidBody;
     [SerializeField] protected bool isInvincible = false; // Mutable at runtime
     protected float rocketCooldownTimer = 0.0f;
-
+    
+    public Collider2D objectCollider;
+    
+    private void Start() {
+        objectCollider = GetComponent<Collider2D>();
+    }
+    
     public virtual void TakeDamage()
     {
         if (isInvincible) return;
-        transform.position = spawnPos.position;
+        transform.position = spawnPos.position
     }
 
     protected void TickCooldownTimer()
@@ -35,7 +41,9 @@ public abstract class CharacterControl : MonoBehaviour
         rocketCooldownTimer = rocketCooldownDuration;
         var angle = Vector2.SignedAngle(Vector2.up, targetPosition - transform.position);
         var rotation = Quaternion.Euler(0.0f, 0.0f, angle);
-        Instantiate(rocketClass, transform.position, rotation);
+        var rocket = Instantiate(rocketClass, transform.position, rotation);
+        rocket.GetComponent<Rocket>().parentPlayer = this;
+        Physics2D.IgnoreCollision(objectCollider, rocket.GetComponent<Rocket>().objectCollider, true);
         return true;
     }
 }
