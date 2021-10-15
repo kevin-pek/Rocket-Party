@@ -9,14 +9,19 @@ public abstract class CharacterControl : MonoBehaviour
     [SerializeField] protected GameObject rocketClass;
     [SerializeField] protected Transform spawnPos;
     [SerializeField] protected Rigidbody2D rigidBody;
+    [SerializeField] protected bool isInvincible = false; // Mutable at runtime
     protected float rocketCooldownTimer = 0.0f;
     
     public Collider2D objectCollider;
-
-    public abstract void TakeDamage();
     
     private void Start() {
         objectCollider = GetComponent<Collider2D>();
+    }
+    
+    public virtual void TakeDamage()
+    {
+        if (isInvincible) return;
+        transform.position = spawnPos.position
     }
 
     protected void TickCooldownTimer()
