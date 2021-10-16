@@ -55,6 +55,7 @@ public abstract class CharacterControl : MonoBehaviour
         rocketCooldownTimer = rocketCooldownDuration;
         var angle = Vector2.SignedAngle(Vector2.up, targetPosition - transform.position);
         var rotation = Quaternion.Euler(0.0f, 0.0f, angle);
+
         var rocket = Instantiate(rocketClass, transform.position + rotation * new Vector3(0.5f, 0, 0), rotation);
         rocket.GetComponent<Rocket>().parentPlayer = this;
         Physics2D.IgnoreCollision(objectCollider, rocket.GetComponent<Rocket>().objectCollider, true);

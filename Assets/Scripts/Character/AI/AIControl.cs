@@ -17,12 +17,6 @@ public class AIControl : CharacterControl
     private Vector2 target;
     private Path path;
 
-    public override void TakeDamage()
-    {
-        // todo
-        transform.position = spawnPos.position;
-    }
-
     /// <summary>
     /// Goes to the given position
     /// </summary>

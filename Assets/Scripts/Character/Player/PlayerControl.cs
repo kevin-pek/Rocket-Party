@@ -7,18 +7,31 @@ public class PlayerControl : CharacterControl
 {    
     [SerializeField] private Text hitText;
     [SerializeField] private Texture2D cursor;
+    [SerializeField] private float hideHitTextAfterSeconds = 1.0f;
+    [SerializeField] private float setNotInvincibleAfterSeconds = 2.0f;
 
+    // TODO animate invincibility
     public override void TakeDamage()
     {
-        transform.position = spawnPos.position;
-        hitText.gameObject.SetActive(true);
-        StartCoroutine(HideHitTextAfter(1));
-    }
+        base.TakeDamage();
 
-    private IEnumerator HideHitTextAfter(float time)
-    {
-        yield return new WaitForSeconds(time);
-        hitText.gameObject.SetActive(false);
+        hitText.gameObject.SetActive(true);
+        StartCoroutine(HideHitTextAfter_local());
+
+        isInvincible = true;
+        StartCoroutine(SetNotInvincibleAfter_local());
+
+        IEnumerator HideHitTextAfter_local()
+        {
+            yield return new WaitForSeconds(hideHitTextAfterSeconds);
+            hitText.gameObject.SetActive(false);
+        }
+
+        IEnumerator SetNotInvincibleAfter_local()
+        {
+            yield return new WaitForSeconds(setNotInvincibleAfterSeconds);
+            isInvincible = false;
+        }
     }
 
     // Update is called once per frame
