@@ -293,7 +293,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &297474722
 GameObject:
@@ -354,12 +354,13 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: fb1b9e017e6744613a58b8521aef981d, type: 3}
+  m_Sprite: {fileID: -2770144056356439337, guid: b7a0d269f5af246f2b3d21841f99b954,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
+  m_FlipX: 1
+  m_FlipY: 1
   m_DrawMode: 0
-  m_Size: {x: 0.16, y: 0.21}
+  m_Size: {x: 0.21, y: 0.28}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -373,10 +374,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 297474722}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16.4, y: -2.04, z: 0}
+  m_LocalPosition: {x: -16.54, y: -2.09, z: 0}
   m_LocalScale: {x: 8, y: 8, z: 1}
-  m_Children:
-  - {fileID: 519420032}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -434,11 +434,19 @@ MonoBehaviour:
   rocketClass: {fileID: 2593542839869711270, guid: 91537d164e3154777b02c337670d6dbc,
     type: 3}
   spawnPos: {fileID: 1541630488}
-  rigidBody: {fileID: 0}
+  rigidBody: {fileID: 297474727}
+  shootEffect: {fileID: 1753413826653503489, guid: b1cc16ed16e0d49a78939693edb6aeed,
+    type: 3}
+  shootOffset: {x: 0.8, y: 2, z: 0}
+  spriteBlinkingTimer: 0
+  spriteBlinkingMiniDuration: 0.1
+  spriteBlinkingTotalTimer: 0
+  spriteBlinkingTotalDuration: 1
+  startBlinking: 0
+  hitText: {fileID: 487541364}
+  cursor: {fileID: 2800000, guid: dc9f932e3ff2b4076a92cbeab7fd1690, type: 3}
   isInvincible: 0
   objectCollider: {fileID: 0}
-  hitText: {fileID: 487541364}
-  cursor: {fileID: 0}
   hideHitTextAfterSeconds: 1
   setNotInvincibleAfterSeconds: 2
 --- !u!1 &335101026
@@ -719,6 +727,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420030}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -734,6 +743,19 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
+--- !u!114 &519420030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ec491d0845344cf591f7a6f22466b35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  following: {fileID: 297474722}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -786,10 +808,10 @@ Transform:
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
-  m_LocalScale: {x: 0.125, y: 0.125, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 297474725}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &945089152
 GameObject:
@@ -1030,7 +1052,7 @@ RectTransform:
   m_Children:
   - {fileID: 487541363}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1281,7 +1303,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1560522014
 GameObject:
@@ -1721,7 +1743,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1991437296
 GameObject:
@@ -1879,7 +1901,15 @@ MonoBehaviour:
   rocketClass: {fileID: 2593542839869711270, guid: 91537d164e3154777b02c337670d6dbc,
     type: 3}
   spawnPos: {fileID: 1925988526}
-  rigidBody: {fileID: 0}
+  rigidBody: {fileID: 2015210931}
+  shootEffect: {fileID: 1753413826653503489, guid: b1cc16ed16e0d49a78939693edb6aeed,
+    type: 3}
+  shootOffset: {x: 0.8, y: 2, z: 0}
+  spriteBlinkingTimer: 0
+  spriteBlinkingMiniDuration: 0.1
+  spriteBlinkingTotalTimer: 0
+  spriteBlinkingTotalDuration: 1
+  startBlinking: 0
   isInvincible: 0
   objectCollider: {fileID: 0}
   player: {fileID: 297474725}
@@ -1926,7 +1956,7 @@ Transform:
   m_Children:
   - {fileID: 1991437299}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2015210935
 MonoBehaviour:

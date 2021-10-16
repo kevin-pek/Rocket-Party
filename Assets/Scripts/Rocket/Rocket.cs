@@ -7,6 +7,7 @@ public class Rocket : MonoBehaviour
     public float speed;
     public int maxBounce = 5;
     public string hitTag;
+
     public Collider2D parentPlayerCollider;
 
     private int currentBounce = 0;
