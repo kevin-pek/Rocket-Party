@@ -53,9 +53,9 @@ public class AIControl : CharacterControl
         return Vector2.Distance(player.position, transform.position);
     }
 
-    private void Start()
+    protected override void Start()
     {
-        base.Start();
+        base.Start(); 
         seeker = GetComponent<Seeker>();
         InvokeRepeating("UpdatePath", 0f, pathUpdateRate);
     }
