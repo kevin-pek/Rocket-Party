@@ -435,18 +435,18 @@ MonoBehaviour:
     type: 3}
   spawnPos: {fileID: 1541630488}
   rigidBody: {fileID: 297474727}
+  isInvincible: 0
   shootEffect: {fileID: 1753413826653503489, guid: b1cc16ed16e0d49a78939693edb6aeed,
     type: 3}
-  shootOffset: {x: 0.8, y: 2, z: 0}
+  spriteOffset: {x: 0.8, y: 2, z: 0}
   spriteBlinkingTimer: 0
   spriteBlinkingMiniDuration: 0.1
   spriteBlinkingTotalTimer: 0
   spriteBlinkingTotalDuration: 1
   startBlinking: 0
+  objectCollider: {fileID: 0}
   hitText: {fileID: 487541364}
   cursor: {fileID: 2800000, guid: dc9f932e3ff2b4076a92cbeab7fd1690, type: 3}
-  isInvincible: 0
-  objectCollider: {fileID: 0}
   hideHitTextAfterSeconds: 1
   setNotInvincibleAfterSeconds: 2
 --- !u!1 &335101026
@@ -1902,15 +1902,15 @@ MonoBehaviour:
     type: 3}
   spawnPos: {fileID: 1925988526}
   rigidBody: {fileID: 2015210931}
+  isInvincible: 0
   shootEffect: {fileID: 1753413826653503489, guid: b1cc16ed16e0d49a78939693edb6aeed,
     type: 3}
-  shootOffset: {x: 0.8, y: 2, z: 0}
+  spriteOffset: {x: 0.8, y: 2, z: 0}
   spriteBlinkingTimer: 0
   spriteBlinkingMiniDuration: 0.1
   spriteBlinkingTotalTimer: 0
   spriteBlinkingTotalDuration: 1
   startBlinking: 0
-  isInvincible: 0
   objectCollider: {fileID: 0}
   player: {fileID: 297474725}
   nextPathPointDistance: 0.2
