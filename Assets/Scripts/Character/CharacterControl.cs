@@ -23,18 +23,19 @@ public abstract class CharacterControl : MonoBehaviour
     public Collider2D objectCollider;
 
     public virtual void TakeDamage() {
-        startBlinking = true;
         if (isInvincible) return;
         transform.position = spawnPos.position;
-    }
-
-    protected void Start() {
-        objectCollider = GetComponent<Collider2D>();
+        startBlinking = true;
     }
 
     protected void Update() {
         if (startBlinking == true)
             SpriteBlinkingEffect();
+    }
+    
+    protected virtual void Start() {
+        rigidBody = GetComponent<Rigidbody2D>();
+        objectCollider = GetComponent<Collider2D>();
     }
 
     protected void TickCooldownTimer()
@@ -55,9 +56,8 @@ public abstract class CharacterControl : MonoBehaviour
         rocketCooldownTimer = rocketCooldownDuration;
         var angle = Vector2.SignedAngle(Vector2.up, targetPosition - transform.position);
         var rotation = Quaternion.Euler(0.0f, 0.0f, angle);
-
-        var rocket = Instantiate(rocketClass, transform.position + rotation * new Vector3(0.5f, 0, 0), rotation);
-        rocket.GetComponent<Rocket>().parentPlayer = this;
+        var rocket = Instantiate(rocketClass, transform.position, rotation);
+        rocket.GetComponent<Rocket>().parentPlayerCollider = objectCollider;
         Physics2D.IgnoreCollision(objectCollider, rocket.GetComponent<Rocket>().objectCollider, true);
 
         // spawn shoot_effect animation
