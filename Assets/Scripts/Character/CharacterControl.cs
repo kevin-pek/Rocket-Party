@@ -9,18 +9,18 @@ public abstract class CharacterControl : MonoBehaviour
     [SerializeField] protected GameObject rocketClass;
     [SerializeField] protected Transform spawnPos;
     [SerializeField] protected Rigidbody2D rigidBody;
-    [SerializeField] protected bool isInvincible = false; // Mutable at runtime
+    [HideInInspector]public bool isInvincible = false; // Mutable at runtime
     protected float rocketCooldownTimer = 0.0f;
 
     [SerializeField] protected GameObject shootEffect;
-    public Vector3 spriteOffset = new Vector3(0.8f, 2f, 0);
+    protected Vector3 spriteOffset = new Vector3(0.5f, 1.6f, 0); // offset for fire animation
     // for blinking animation
-    public float spriteBlinkingTimer = 0.0f;
-    public float spriteBlinkingMiniDuration = 0.05f;
-    public float spriteBlinkingTotalTimer = 0.0f;
-    public float spriteBlinkingTotalDuration = 1.0f;
-    public bool startBlinking = false;
-    public Collider2D objectCollider;
+    protected float spriteBlinkingTimer = 0.0f;
+    protected float spriteBlinkingMiniDuration = 0.05f;
+    protected float spriteBlinkingTotalTimer = 0.0f;
+    protected float spriteBlinkingTotalDuration = 1.0f;
+    protected bool startBlinking = false;
+    [HideInInspector]public Collider2D objectCollider;
 
     public virtual void TakeDamage() {
         if (isInvincible) return;
