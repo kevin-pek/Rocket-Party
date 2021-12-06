@@ -19,13 +19,14 @@ public class AICombatAI : MonoBehaviour
 
     private void Start()
     {
-        IState idleState = new IdleState(control);
+        // IState idleState = new IdleState(control);
+        IState patrolState = new PatrolState(control);
         IState followState = new FollowState(control, stopDistance);
         IState fireRocketState = new FireRocketState(control);
         IState waitState = new WaitState(control, 0.5f, 1.2f);
 
         // idle
-        stateMachine.AddTransition(idleState, followState, () => control.GetTargetDistance() < startFollowDistance);
+        stateMachine.AddTransition(patrolState, followState, () => control.GetTargetDistance() < startFollowDistance);
 
         // follow
         stateMachine.AddTransition(followState, fireRocketState, CurrentStatedEnded);
@@ -34,9 +35,9 @@ public class AICombatAI : MonoBehaviour
         stateMachine.AddTransition(fireRocketState, waitState, CurrentStatedEnded);
 
         // wait
-        stateMachine.AddTransition(waitState, idleState, CurrentStatedEnded);
+        stateMachine.AddTransition(waitState, patrolState, CurrentStatedEnded);
 
-        stateMachine.SetState(idleState);
+        stateMachine.SetState(patrolState);
     }
 
     private void Update()
