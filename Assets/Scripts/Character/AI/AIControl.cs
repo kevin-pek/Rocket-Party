@@ -6,6 +6,7 @@ using Pathfinding;
 public class AIControl : CharacterControl
 {
     [SerializeField] private Transform player;
+    [SerializeField] private RoutePoint routePoint;
 
     public float nextPathPointDistance;
     public float pathUpdateRate = 0.5f;
@@ -36,6 +37,15 @@ public class AIControl : CharacterControl
     public void Idle()
     {
         isMoving = false;
+    }
+
+    public void Patrol()
+    {
+        if (GoTo(routePoint.transform.position, 0.3f))
+        {
+            routePoint = routePoint.GetNextPoint();
+            print("go next " + routePoint.gameObject.name);
+        }
     }
 
     public bool FireWeaponAtTarget()
@@ -74,14 +84,20 @@ public class AIControl : CharacterControl
             return;
         }
 
+        Vector2 direction;
+
         reachedTarget = currentPathPointIndex >= path.vectorPath.Count;
         if (reachedTarget)
         {
-            return;
+            direction = target - new Vector2(transform.position.x, transform.position.y);
+        }
+        else
+        {
+            direction = path.vectorPath[currentPathPointIndex] - transform.position;
         }
 
-        Vector2 direction = path.vectorPath[currentPathPointIndex] - transform.position;
         rigidBody.velocity = direction.normalized * characterSpeed;
+        
         if (direction.sqrMagnitude < nextPathPointDistance * nextPathPointDistance)
         {
             currentPathPointIndex++;
@@ -90,6 +106,7 @@ public class AIControl : CharacterControl
 
     private void UpdatePath()
     {
+        print("update path");
         if (!isMoving)
         {
             return;
