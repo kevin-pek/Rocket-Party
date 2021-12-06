@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2593542839869711273}
   m_Layer: 0
   m_Name: Rocket
-  m_TagString: Untagged
+  m_TagString: Rocket
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 2593542839869711270}
   m_LocalRotation: {x: -0, y: -0, z: 0.0046315184, w: 0.9999893}
   m_LocalPosition: {x: 0.05, y: 0.05, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 8, y: 8, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -73,10 +73,11 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2e9575a8b4a8d274884276a579477cf8, type: 3}
+  m_Sprite: {fileID: -3335445523791394775, guid: 48313e46d4e384b6ab008a84d83b222a,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
-  m_FlipY: 0
+  m_FlipY: 1
   m_DrawMode: 0
   m_Size: {x: 4, y: 3.78}
   m_AdaptiveModeThreshold: 0.5
@@ -97,8 +98,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.4}
-  m_Size: {x: 1.3, y: 2.5}
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.1, y: 0.2}
   m_Direction: 0
 --- !u!114 &2593542839869711269
 MonoBehaviour:
@@ -115,6 +116,12 @@ MonoBehaviour:
   speed: 20
   maxBounce: 5
   hitTag: Character
+  parentPlayerCollider: {fileID: 0}
+  objectCollider: {fileID: 0}
+  hitEffect: {fileID: 7036162042999209077, guid: 68a9ac82aa78044e7b79625a9a61cfe3,
+    type: 3}
+  explosionEffect: {fileID: 3836448310015503339, guid: ba149b86ee0934f4c9359b94969023c1,
+    type: 3}
 --- !u!50 &2593542839869711273
 Rigidbody2D:
   serializedVersion: 4

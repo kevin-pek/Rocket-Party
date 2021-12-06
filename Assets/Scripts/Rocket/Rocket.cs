@@ -8,10 +8,12 @@ public class Rocket : MonoBehaviour
     public int maxBounce = 5;
     public string hitTag;
 
-    public Collider2D parentPlayerCollider;
+    [HideInInspector]public Collider2D parentPlayerCollider;
 
     private int currentBounce = 0;
-    public Collider2D objectCollider;
+    [HideInInspector]public Collider2D objectCollider;
+    [SerializeField] private GameObject hitEffect;
+    [SerializeField] private GameObject explosionEffect;
 
     private void Awake()
     {
@@ -33,20 +35,38 @@ public class Rocket : MonoBehaviour
     {
         if (collision.collider.tag == hitTag)
         {
+            if (collision.collider.GetComponent<CharacterControl>().isInvincible)
+                return;
+            Vector2 hitPoint = collision.GetContact(0).point;
+            GameObject effect = Instantiate(explosionEffect, new Vector3(hitPoint.x, hitPoint.y, 0), Quaternion.identity);
+            Destroy(effect, 1);
             collision.collider.GetComponent<CharacterControl>().TakeDamage();
+            Destroy(gameObject);
         }
-
-        if (currentBounce >= maxBounce)
+        else if (collision.collider.tag == objectCollider.tag) {
+            Vector2 hitPoint = collision.GetContact(0).point;
+            GameObject effect = Instantiate(explosionEffect, new Vector3(hitPoint.x, hitPoint.y, 0), Quaternion.identity);
+            Destroy(effect, 1);
+            Destroy(gameObject);
+        }
+        else if (currentBounce >= maxBounce)
         {
-            Destroy(transform.gameObject);
+            Vector2 hitPoint = collision.GetContact(0).point;
+            GameObject effect = Instantiate(explosionEffect, new Vector3(hitPoint.x, hitPoint.y, 0), Quaternion.identity);
+            Destroy(effect, 1);
+            Destroy(gameObject);
             return;
         }
-
-        Vector2 collisionNormal = collision.contacts[0].normal;
-        float collisionAngle = Vector2.SignedAngle(-transform.up, collisionNormal);
-        transform.up = -transform.up;
-        transform.Rotate(Vector3.forward, collisionAngle * 2);
-        currentBounce++;
+        else {
+            Vector2 hitPoint = collision.GetContact(0).point;
+            GameObject effect = Instantiate(hitEffect, new Vector3(hitPoint.x, hitPoint.y, 0), Quaternion.identity);
+            Destroy(effect, 0.5f);
+            Vector2 collisionNormal = collision.contacts[0].normal;
+            float collisionAngle = Vector2.SignedAngle(-transform.up, collisionNormal);
+            transform.up = -transform.up;
+            transform.Rotate(Vector3.forward, collisionAngle * 2);
+            currentBounce++;
+        }
     }
 
     private IEnumerator EnableColliderAfter(float time)

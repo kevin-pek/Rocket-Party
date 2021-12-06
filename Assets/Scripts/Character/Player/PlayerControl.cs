@@ -10,9 +10,9 @@ public class PlayerControl : CharacterControl
     [SerializeField] private float hideHitTextAfterSeconds = 1.0f;
     [SerializeField] private float setNotInvincibleAfterSeconds = 2.0f;
 
-    // TODO animate invincibility
     public override void TakeDamage()
     {
+        spriteBlinkingTotalDuration = setNotInvincibleAfterSeconds;
         base.TakeDamage();
 
         hitText.gameObject.SetActive(true);
