@@ -2,18 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerControl : CharacterControl
 {    
-    [SerializeField] private Text hitText;
+    public int score;
+    [SerializeField] private float timeLeft = 10f;
+    [SerializeField] private Canvas canvas;
+    [SerializeField] private Text scoreText;
+    [SerializeField] private Text timerText;
     [SerializeField] private Texture2D cursor;
+    [SerializeField] private Text hitText;
     [SerializeField] private float hideHitTextAfterSeconds = 1.0f;
     [SerializeField] private float setNotInvincibleAfterSeconds = 2.0f;
+
+    public void Start()
+    {
+        base.Start();
+        score = 0;
+        var rectTransform = canvas.GetComponent<RectTransform>();
+        float screenWidth = rectTransform.rect.width;
+        float screenHeight = rectTransform.rect.height;
+        scoreText.rectTransform.anchoredPosition = new Vector2(0, screenHeight / 2 - 20);
+    }
 
     public override void TakeDamage()
     {
         spriteBlinkingTotalDuration = setNotInvincibleAfterSeconds;
         base.TakeDamage();
+
+        UpdateScore(false);
 
         hitText.gameObject.SetActive(true);
         StartCoroutine(HideHitTextAfter_local());
@@ -34,11 +52,39 @@ public class PlayerControl : CharacterControl
         }
     }
 
+    void DisplayTime(float timeToDisplay)
+    {
+        float minutes = Mathf.FloorToInt(timeLeft / 60); 
+        float seconds = Mathf.FloorToInt(timeLeft % 60);
+
+        timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
+
+    public void UpdateScore(bool isIncrement)
+    {
+        if (isIncrement) {
+            score += 100;
+        }
+        else
+        {
+            score = Mathf.Max(0, score - 50);
+        }
+        scoreText.text = "Score: " + score;
+    }
+
     // Update is called once per frame
     private void Update()
     {
         base.Update();
+        // reduce level timer
+        timeLeft -= Time.deltaTime;
+        if (timeLeft <= 0)
+        {
+            timeLeft = 0;
+            SceneManager.LoadScene("GameOver");
+        }
 
+        DisplayTime(timeLeft);
         TickCooldownTimer();
 
         // Movement

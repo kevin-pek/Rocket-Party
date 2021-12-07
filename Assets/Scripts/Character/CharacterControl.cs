@@ -15,12 +15,13 @@ public abstract class CharacterControl : MonoBehaviour
     [SerializeField] protected GameObject shootEffect;
     protected Vector3 spriteOffset = new Vector3(0.5f, 1.6f, 0); // offset for fire animation
     // for blinking animation
+    [HideInInspector]public Collider2D objectCollider;
     protected float spriteBlinkingTimer = 0.0f;
     protected float spriteBlinkingMiniDuration = 0.05f;
     protected float spriteBlinkingTotalTimer = 0.0f;
     protected float spriteBlinkingTotalDuration = 1.0f;
     protected bool startBlinking = false;
-    [HideInInspector]public Collider2D objectCollider;
+    SpriteRenderer[] sprites;
 
     public virtual void TakeDamage() {
         if (isInvincible) return;
@@ -36,6 +37,7 @@ public abstract class CharacterControl : MonoBehaviour
     protected virtual void Start() {
         rigidBody = GetComponent<Rigidbody2D>();
         objectCollider = GetComponent<Collider2D>();
+        sprites = GetComponentsInChildren<SpriteRenderer>();
     }
 
     protected void TickCooldownTimer()
@@ -57,7 +59,7 @@ public abstract class CharacterControl : MonoBehaviour
         var angle = Vector2.SignedAngle(Vector2.up, targetPosition - transform.position);
         var rotation = Quaternion.Euler(0.0f, 0.0f, angle);
         var rocket = Instantiate(rocketClass, transform.position, rotation);
-        rocket.GetComponent<Rocket>().parentPlayerCollider = objectCollider;
+        rocket.GetComponent<Rocket>().parentPlayer = gameObject;
         Physics2D.IgnoreCollision(objectCollider, rocket.GetComponent<Rocket>().objectCollider, true);
 
         // spawn shoot_effect animation
@@ -73,7 +75,10 @@ public abstract class CharacterControl : MonoBehaviour
         {
             startBlinking = false;
             spriteBlinkingTotalTimer = 0.0f;
-            GetComponent<SpriteRenderer>().enabled = true;
+            foreach (SpriteRenderer sprite in sprites)
+            {
+                sprite.enabled = true;
+            }
             return;
         }
      
@@ -81,10 +86,9 @@ public abstract class CharacterControl : MonoBehaviour
         if(spriteBlinkingTimer >= spriteBlinkingMiniDuration)
         {
             spriteBlinkingTimer = 0.0f;
-            if (GetComponent<SpriteRenderer>().enabled == true) {
-                GetComponent<SpriteRenderer>().enabled = false;
-            } else {
-                GetComponent<SpriteRenderer>().enabled = true;
+            foreach (SpriteRenderer sprite in sprites)
+            {
+                sprite.enabled = !sprite.enabled;
             }
         }
     }

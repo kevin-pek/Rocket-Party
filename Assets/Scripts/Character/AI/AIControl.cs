@@ -62,6 +62,7 @@ public class AIControl : CharacterControl
 
     private void Update()
     {
+        base.Update();
         TickCooldownTimer();
 
         if (!isMoving)

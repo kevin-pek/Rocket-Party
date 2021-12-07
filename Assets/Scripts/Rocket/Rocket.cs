@@ -8,10 +8,10 @@ public class Rocket : MonoBehaviour
     public int maxBounce = 5;
     public string hitTag;
 
-    [HideInInspector]public Collider2D parentPlayerCollider;
+    [HideInInspector] public GameObject parentPlayer;
 
     private int currentBounce = 0;
-    [HideInInspector]public Collider2D objectCollider;
+    [HideInInspector] public Collider2D objectCollider;
     [SerializeField] private GameObject hitEffect;
     [SerializeField] private GameObject explosionEffect;
 
@@ -33,17 +33,19 @@ public class Rocket : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.tag == hitTag)
+        if (collision.collider.tag == hitTag) // Character
         {
             if (collision.collider.GetComponent<CharacterControl>().isInvincible)
                 return;
+            if (!collision.collider.GetComponent<PlayerControl>() && parentPlayer.GetComponent<PlayerControl>())
+                parentPlayer.GetComponent<PlayerControl>().UpdateScore(true);
             Vector2 hitPoint = collision.GetContact(0).point;
             GameObject effect = Instantiate(explosionEffect, new Vector3(hitPoint.x, hitPoint.y, 0), Quaternion.identity);
             Destroy(effect, 1);
             collision.collider.GetComponent<CharacterControl>().TakeDamage();
             Destroy(gameObject);
         }
-        else if (collision.collider.tag == objectCollider.tag) {
+        else if (collision.collider.tag == objectCollider.tag) { // Rocket
             Vector2 hitPoint = collision.GetContact(0).point;
             GameObject effect = Instantiate(explosionEffect, new Vector3(hitPoint.x, hitPoint.y, 0), Quaternion.identity);
             Destroy(effect, 1);
@@ -57,7 +59,7 @@ public class Rocket : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        else {
+        else { //bounce
             Vector2 hitPoint = collision.GetContact(0).point;
             GameObject effect = Instantiate(hitEffect, new Vector3(hitPoint.x, hitPoint.y, 0), Quaternion.identity);
             Destroy(effect, 0.5f);
@@ -72,6 +74,6 @@ public class Rocket : MonoBehaviour
     private IEnumerator EnableColliderAfter(float time)
     {
         yield return new WaitForSeconds(time);
-        Physics2D.IgnoreCollision(parentPlayerCollider, objectCollider, false);
+        Physics2D.IgnoreCollision(parentPlayer.GetComponent<Collider2D>(), objectCollider, false);
     }
 }
