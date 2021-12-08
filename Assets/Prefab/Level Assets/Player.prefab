@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2763920187611488382
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6578350469662830328}
+  m_Layer: 8
+  m_Name: Rocket Spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6578350469662830328
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2763920187611488382}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.075, y: 0.128, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2914756371052107244}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2914756369080436704
 GameObject:
   m_ObjectHideFlags: 0
@@ -359,6 +389,7 @@ Transform:
   - {fileID: 2914756371042199345}
   - {fileID: 2914756369080436707}
   - {fileID: 2914756369893506067}
+  - {fileID: 6578350469662830328}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -380,17 +411,22 @@ MonoBehaviour:
     type: 3}
   spawnPos: {fileID: 0}
   rigidBody: {fileID: 2914756371052107246}
+  rocketSpawnPos: {fileID: 6578350469662830328}
   isInvincible: 0
   shootEffect: {fileID: 1753413826653503489, guid: b1cc16ed16e0d49a78939693edb6aeed,
     type: 3}
   objectCollider: {fileID: 0}
   score: 0
-  timeLeft: 120
+  timeLeft: 180
   canvas: {fileID: 0}
   scoreText: {fileID: 0}
   timerText: {fileID: 0}
+  pauseText: {fileID: 0}
   cursor: {fileID: 2800000, guid: dc9f932e3ff2b4076a92cbeab7fd1690, type: 3}
   hitText: {fileID: 0}
+  gameoverText: {fileID: 0}
+  returnToMenu: {fileID: 0}
+  isPaused: 0
   hideHitTextAfterSeconds: 1
   setNotInvincibleAfterSeconds: 2
 --- !u!50 &2914756371052107246

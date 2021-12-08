@@ -79,6 +79,14 @@ public class AIControl : CharacterControl
         return Vector2.Distance(player.position, transform.position);
     }
 
+    private void LookAtPlayer()
+    {
+        Vector3 diff = player.position - transform.position;
+        diff.Normalize();
+        float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
+    }
+
     protected override void Start()
     {
         base.Start(); 
@@ -89,6 +97,7 @@ public class AIControl : CharacterControl
     private void Update()
     {
         TickCooldownTimer();
+        LookAtPlayer();
 
         if (!isMoving)
         {

@@ -14,6 +14,8 @@ public class Rocket : MonoBehaviour
     [HideInInspector] public Collider2D objectCollider;
     [SerializeField] private GameObject hitEffect;
     [SerializeField] private GameObject explosionEffect;
+    [SerializeField] private GameObject rocketAudioObject;
+    private RocketAudio rocketAudio;
 
     private void Awake()
     {
@@ -24,6 +26,9 @@ public class Rocket : MonoBehaviour
     {
         currentBounce = 0;
         StartCoroutine(EnableColliderAfter(0.2f));
+        GameObject obj = Instantiate(rocketAudioObject, Vector3.zero, Quaternion.identity);
+        rocketAudio = obj.GetComponent<RocketAudio>();
+        rocketAudio.PlayFireSound();
     }
 
     private void Update()
@@ -41,6 +46,7 @@ public class Rocket : MonoBehaviour
                 parentPlayer.GetComponent<PlayerControl>().UpdateScore(true);
             Vector2 hitPoint = collision.GetContact(0).point;
             GameObject effect = Instantiate(explosionEffect, new Vector3(hitPoint.x, hitPoint.y, 0), Quaternion.identity);
+            rocketAudio.PlayExplosionSound();
             Destroy(effect, 1);
             collision.collider.GetComponent<CharacterControl>().TakeDamage();
             Destroy(gameObject);
@@ -48,6 +54,7 @@ public class Rocket : MonoBehaviour
         else if (collision.collider.tag == objectCollider.tag) { // Rocket
             Vector2 hitPoint = collision.GetContact(0).point;
             GameObject effect = Instantiate(explosionEffect, new Vector3(hitPoint.x, hitPoint.y, 0), Quaternion.identity);
+            rocketAudio.PlayExplosionSound();
             Destroy(effect, 1);
             Destroy(gameObject);
         }
@@ -55,6 +62,7 @@ public class Rocket : MonoBehaviour
         {
             Vector2 hitPoint = collision.GetContact(0).point;
             GameObject effect = Instantiate(explosionEffect, new Vector3(hitPoint.x, hitPoint.y, 0), Quaternion.identity);
+            rocketAudio.PlayExplosionSound();
             Destroy(effect, 1);
             Destroy(gameObject);
             return;

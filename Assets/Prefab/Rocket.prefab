@@ -71,6 +71,8 @@ MonoBehaviour:
     type: 3}
   explosionEffect: {fileID: 3836448310015503339, guid: ba149b86ee0934f4c9359b94969023c1,
     type: 3}
+  rocketAudioObject: {fileID: 7965903240074910346, guid: ba0264b966a80c94a9b810bd1933aeeb,
+    type: 3}
 --- !u!50 &2593542839869711273
 Rigidbody2D:
   serializedVersion: 4
