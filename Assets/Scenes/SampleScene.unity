@@ -617,11 +617,10 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!70 &769063817
-CapsuleCollider2D:
+--- !u!58 &769063817
+CircleCollider2D:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 7042898853051502445, guid: 5b47ba041573a445cbf4fc5c933e5829,
-    type: 3}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 769063815}
@@ -632,8 +631,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 1}
-  m_Direction: 0
+  serializedVersion: 2
+  m_Radius: 0.1
 --- !u!50 &769063818
 Rigidbody2D:
   serializedVersion: 4
@@ -734,6 +733,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5189719656580202287, guid: 002b4acab45984e8094e58f0f36483de,
+        type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7436298237175522200, guid: 002b4acab45984e8094e58f0f36483de,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1917,6 +1921,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: A* Pathfinding
       objectReference: {fileID: 0}
+    - target: {fileID: 1902520756739264798, guid: 826a9cc9768c64568aaf908e9a8bb4a3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 826a9cc9768c64568aaf908e9a8bb4a3, type: 3}
 --- !u!1001 &2570456338780199974
@@ -1930,6 +1939,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Main Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 2570456338230802476, guid: 2ffb8fee866a64347ac7a91772954724,
+        type: 3}
+      propertyPath: orthographic size
+      value: 13.23
       objectReference: {fileID: 0}
     - target: {fileID: 2570456338230802477, guid: 2ffb8fee866a64347ac7a91772954724,
         type: 3}

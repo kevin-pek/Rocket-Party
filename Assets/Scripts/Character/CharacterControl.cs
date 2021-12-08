@@ -9,6 +9,7 @@ public abstract class CharacterControl : MonoBehaviour
     [SerializeField] protected GameObject rocketClass;
     [SerializeField] protected Transform spawnPos;
     [SerializeField] protected Rigidbody2D rigidBody;
+    [SerializeField] protected Transform rocketSpawnPos;
     [HideInInspector]public bool isInvincible = false; // Mutable at runtime
     protected float rocketCooldownTimer = 0.0f;
 
@@ -59,7 +60,7 @@ public abstract class CharacterControl : MonoBehaviour
         rocketCooldownTimer = rocketCooldownDuration;
         var angle = Vector2.SignedAngle(Vector2.up, targetPosition - transform.position);
         var rotation = Quaternion.Euler(0.0f, 0.0f, angle);
-        var rocket = Instantiate(rocketClass, transform.position, rotation);
+        var rocket = Instantiate(rocketClass, rocketSpawnPos.position, rotation);
         rocket.GetComponent<Rocket>().parentPlayer = gameObject;
         Physics2D.IgnoreCollision(objectCollider, rocket.GetComponent<Rocket>().objectCollider, true);
 
