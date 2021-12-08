@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 2593542839869711270}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.05, y: 0.05, z: 0}
-  m_LocalScale: {x: 8, y: 8, z: 0.5}
+  m_LocalScale: {x: 6, y: 6, z: 0.5}
   m_Children:
   - {fileID: 900910135124096786}
   m_Father: {fileID: 0}
@@ -65,7 +65,7 @@ MonoBehaviour:
   speed: 20
   maxBounce: 5
   hitTag: Character
-  parentPlayerCollider: {fileID: 0}
+  parentPlayer: {fileID: 0}
   objectCollider: {fileID: 0}
   hitEffect: {fileID: 7036162042999209077, guid: 68a9ac82aa78044e7b79625a9a61cfe3,
     type: 3}
@@ -117,8 +117,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4781541123569128827}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: -0.025, z: 0}
+  m_LocalScale: {x: 1, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 2593542839869711274}
   m_RootOrder: 0

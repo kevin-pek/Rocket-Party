@@ -14,7 +14,8 @@ public abstract class CharacterControl : MonoBehaviour
 
     [SerializeField] protected GameObject shootEffect;
     protected Vector3 spriteOffset = new Vector3(0.5f, 1.6f, 0); // offset for fire animation
-    // for blinking animation
+    
+    // used for blinking animation
     [HideInInspector]public Collider2D objectCollider;
     protected float spriteBlinkingTimer = 0.0f;
     protected float spriteBlinkingMiniDuration = 0.05f;
