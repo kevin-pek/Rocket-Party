@@ -5,6 +5,7 @@ using Pathfinding;
 
 public class AIControl : CharacterControl
 {
+    [SerializeField] private LayerMask obstacleLayerMask;
     [SerializeField] private Transform player;
     [SerializeField] private RoutePoint routePoint;
 
@@ -48,8 +49,23 @@ public class AIControl : CharacterControl
         }
     }
 
+    public bool CanShootRocket()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(
+            transform.position,
+            player.position - transform.position,
+            Vector2.Distance(transform.position, player.position),
+            obstacleLayerMask);
+        return hit.collider == null;
+    }
+
     public bool FireWeaponAtTarget()
     {
+        // do a raycast to player
+        if (!CanShootRocket())
+        {
+            return false;
+        }
         return FireWeapon(player.position);
     }
 
@@ -84,20 +100,16 @@ public class AIControl : CharacterControl
             return;
         }
 
-        Vector2 direction;
-
         reachedTarget = currentPathPointIndex >= path.vectorPath.Count;
+
         if (reachedTarget)
         {
-            direction = target - new Vector2(transform.position.x, transform.position.y);
-        }
-        else
-        {
-            direction = path.vectorPath[currentPathPointIndex] - transform.position;
+            return;
         }
 
-        rigidBody.velocity = direction.normalized * characterSpeed;
-        
+        Vector2 direction = (Vector2)path.vectorPath[currentPathPointIndex] - rigidBody.position;
+        rigidBody.position += direction.normalized * characterSpeed * Time.deltaTime;
+
         if (direction.sqrMagnitude < nextPathPointDistance * nextPathPointDistance)
         {
             currentPathPointIndex++;
@@ -106,7 +118,6 @@ public class AIControl : CharacterControl
 
     private void UpdatePath()
     {
-        print("update path");
         if (!isMoving)
         {
             return;
@@ -120,6 +131,7 @@ public class AIControl : CharacterControl
         if (!path.error)
         {
             this.path = path;
+            currentPathPointIndex = 0;
         }
     }
 }

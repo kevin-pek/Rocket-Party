@@ -42,6 +42,8 @@ public class FollowState : IState
         {
             return;
         }
-        stateEnded = control.GoTo(control.GetTargetPos(), stopDistance);
+
+        control.GoTo(control.GetTargetPos(), stopDistance);
+        stateEnded = control.CanShootRocket();
     }
 }
