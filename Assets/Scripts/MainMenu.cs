@@ -10,6 +10,7 @@ public class MainMenu : MonoBehaviour
     }
 
     public void LoadLevel(string levelName) {
+        Time.timeScale = 1;
         SceneManager.LoadScene(levelName);
     }
 

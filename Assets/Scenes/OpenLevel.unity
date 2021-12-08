@@ -41043,6 +41043,11 @@ PrefabInstance:
       objectReference: {fileID: 491693193}
     - target: {fileID: 2914756371052107232, guid: 108a8ed0389cb494a960892622d341a7,
         type: 3}
+      propertyPath: timeLeft
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2914756371052107232, guid: 108a8ed0389cb494a960892622d341a7,
+        type: 3}
       propertyPath: pauseText
       value: 
       objectReference: {fileID: 5643448618204529168}

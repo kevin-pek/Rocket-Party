@@ -112,6 +112,8 @@ public class PlayerControl : CharacterControl
         if (timeLeft <= 0)
         {
             timeLeft = 0;
+            Time.timeScale = 0;
+            isPaused = true;
             Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
             timerText.gameObject.SetActive(false);
             gameoverText.gameObject.SetActive(true);

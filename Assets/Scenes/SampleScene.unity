@@ -634,7 +634,7 @@ MonoBehaviour:
     type: 3}
   objectCollider: {fileID: 0}
   score: 0
-  timeLeft: 120
+  timeLeft: 10
   canvas: {fileID: 1037534024}
   scoreText: {fileID: 1037534026}
   timerText: {fileID: 1037534027}
