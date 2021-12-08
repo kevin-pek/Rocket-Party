@@ -41,7 +41,7 @@ public class FireRocketState : IState
 
     public void Tick()
     {
-        if (fireCount <= 0)
+        if (fireCount <= 0 || !control.CanShootRocket())
         {
             stateEnded = true;
             return;
