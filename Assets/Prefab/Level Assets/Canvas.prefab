@@ -32,11 +32,11 @@ RectTransform:
   m_Father: {fileID: 7436298237175522200}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000030517578, y: 74.5}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0.00004305831, y: -20}
   m_SizeDelta: {x: 160, y: 30}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &702364383177880895
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -318,11 +318,11 @@ RectTransform:
   m_Father: {fileID: 7436298237175522200}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 40}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -50}
   m_SizeDelta: {x: 160, y: 30}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &5189719657904032451
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -534,6 +534,7 @@ GameObject:
   - component: {fileID: 5189719656580202287}
   - component: {fileID: 5189719656580202280}
   - component: {fileID: 5189719656580202284}
+  - component: {fileID: 5643448618204529172}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -598,7 +599,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -637,6 +638,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64566f4777fd94380be48b8a13575027, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5643448618204529172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7436298237175522204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6191ffe62f308f04da57ec41f27ccca0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeLeft: 180
+  scoreText: {fileID: 5189719657904032460}
+  timerText: {fileID: 1628565884487755764}
+  pauseText: {fileID: 7198832517746097409}
+  cursor: {fileID: 2800000, guid: dc9f932e3ff2b4076a92cbeab7fd1690, type: 3}
+  gameoverText: {fileID: 5189719658205213485}
+  returnToMenu: {fileID: 5189719657715583977}
+  player: {fileID: 0}
 --- !u!1 &7913739182205012564
 GameObject:
   m_ObjectHideFlags: 0

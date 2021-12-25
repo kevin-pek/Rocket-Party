@@ -8,7 +8,7 @@ public abstract class CharacterControl : MonoBehaviour
     [SerializeField] protected float rocketCooldownDuration;
     [SerializeField] protected GameObject rocketClass;
     [SerializeField] protected Transform spawnPos;
-    [SerializeField] protected Rigidbody2D rigidBody;
+    protected Rigidbody2D rigidBody;
     [SerializeField] protected Transform rocketSpawnPos;
     [HideInInspector]public bool isInvincible = false; // Mutable at runtime
     protected float rocketCooldownTimer = 0.0f;
@@ -31,15 +31,17 @@ public abstract class CharacterControl : MonoBehaviour
         startBlinking = true;
     }
 
-    protected void Update() {
-        if (startBlinking == true)
-            SpriteBlinkingEffect();
-    }
-    
-    protected virtual void Start() {
+    protected virtual void Start()
+    {
         rigidBody = GetComponent<Rigidbody2D>();
         objectCollider = GetComponent<Collider2D>();
         sprites = GetComponentsInChildren<SpriteRenderer>();
+    }
+
+    protected void Update() 
+    {
+        if (startBlinking == true)
+            SpriteBlinkingEffect();
     }
 
     protected void TickCooldownTimer()
